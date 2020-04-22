@@ -1,0 +1,39 @@
+//Login Page Locators
+
+By.id("user-name");
+By.id("password");
+By.className("btn_action");
+
+//Products Page Locators
+
+By.cssSelector(".product_sort_container");
+By.xpath("//*[text()='Sauce Labs Backpack']/../../..//button");
+By.xpath("//*[text()='Sauce Labs Backpack']/../../..//div");
+
+//Side menu Locators
+
+By.cssSelector(".bm-burger-button");
+By.cssSelector(".bm-cross-button");
+By.id("inventory_sidebar_link");
+By.id("about_sidebar_link");
+By.id("logout_sidebar_link");
+By.id("reset_sidebar_link");
+
+//Cart Page Locators
+
+By.cssSelector(".shopping_cart_container");
+By.xpath("//span[@class='fa-layers-counter shopping_cart_badge']");
+By.xpath("//*[text()='Sauce Labs Backpack']/../../..//button");
+By.cssSelector(".btn_secondary");   By.xpath("//a[@class='cart_cancel_link btn_secondary']");
+By.cssSelector(".btn_action");      By.xpath("//input[@type='submit']");
+
+//Checkout Page Locators
+
+By.id("first-name");
+By.id("last-name");
+By.id("postal-code");
+By.cssSelector(".cart_cancel");  By.xpath("//a[text()='CANCEL']")  - поскольку кнопки в корзине имеют одинаковый класс
+By.cssSelector(".btn_primary");  By.xpath("//a[text()='FINISH']")  - считаю резонным искать ссылку по тексту
+
+
+
