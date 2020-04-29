@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class SauceDemoTests extends BaseTest {
 
     @Test
-    public void loginTest() {
+    public void demoTestsFromLecture() {
         loginPage.openPage();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.addToCart("Sauce Labs Fleece Jacket");
