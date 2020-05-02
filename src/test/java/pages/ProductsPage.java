@@ -9,6 +9,8 @@ public class ProductsPage extends BasePage {
     private static final By CONTINUE_SHOPPING_BUTTON = By.cssSelector(".btn_secondary");
     private static final By CHECKOUT_BUTTON = By.cssSelector(".btn_action");
     private static final By INVENTORY_VISIBILITY_LOCATOR = By.id("inventory_container");
+    private static final String CART_CSS = ".shopping_cart_link";
+
 
 
     private static final String PRODUCTS_URL = "https://www.saucedemo.com/inventory.html";
@@ -17,13 +19,23 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
+    @Override
+    public ProductsPage openPage() {
         driver.get(PRODUCTS_URL);
+        isPageOpen();
+        return this;
     }
 
-    public void addToCart(String productName) {
+    @Override
+    protected ProductsPage isPageOpen() {
+        waitForElementVisibility(INVENTORY_VISIBILITY_LOCATOR);
+        return this;
+    }
+
+    public ProductsPage addToCart(String productName) {
         By addToCartXpath = By.xpath(String.format(ADD_TO_CART_LOCATOR, productName));
         driver.findElement(addToCartXpath).click();
+        return this;
     }
 
     public void removeItemFromCart(String productName) {
@@ -33,5 +45,10 @@ public class ProductsPage extends BasePage {
 
     public void verifyInventoryVisibility() {
         waitForElementVisibility(INVENTORY_VISIBILITY_LOCATOR);
+    }
+
+    public CartPage clickCart() {
+        driver.findElement(By.cssSelector(CART_CSS)).click();
+        return new CartPage(driver);
     }
 }

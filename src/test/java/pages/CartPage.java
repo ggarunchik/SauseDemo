@@ -16,12 +16,22 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
+    @Override
+    public CartPage openPage() {
         driver.get(CART_URL);
+        isPageOpen();
+        return this;
     }
 
-    public void validateProductsAmount(int number) {
+    @Override
+    protected CartPage isPageOpen() {
+        waitForElementVisibility(CHECKOUT_BTN);
+        return this;
+    }
+
+    public CartPage validateProductsAmount(int number) {
         Assert.assertEquals(driver.findElements(CART_ITEM).size(), number, "Quantity is invalid");
+        return this;
     }
 
     public void validateProductDetails(String productName, int quantity, double price) {
