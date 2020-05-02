@@ -15,8 +15,17 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void openPage() {
+    @Override
+    public LoginPage openPage() {
         driver.get(LOGIN_URL);
+        isPageOpen();
+        return this;
+    }
+
+    @Override
+    protected LoginPage isPageOpen() {
+        waitForElementVisibility(LOGIN_BUTTON);
+        return this;
     }
 
     public void login(String userName, String userPassword) {

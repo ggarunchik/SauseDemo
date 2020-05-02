@@ -21,6 +21,16 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
 
+    @Override
+    protected CheckoutPage openPage() {
+        return this;
+    }
+
+    @Override
+    protected CheckoutPage isPageOpen() {
+        return this;
+    }
+
     public void verifyContinueToCheckout(String userName, String userSurname, int userZipCode) {
         writeText(FIRST_NAME_INPUT, userName);
         writeText(LAST_NAME_INPUT, userSurname);
