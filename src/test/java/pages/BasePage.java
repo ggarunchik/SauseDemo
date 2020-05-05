@@ -23,7 +23,7 @@ public abstract class BasePage {
         try {
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elementBy));
         } catch (TimeoutException ex) {
-            Assert.fail("can't find element. dropped by timeout");
+            Assert.fail("Can't find element == " + elementBy + " Dropped by timeout");
             ex.printStackTrace();
         }
     }
@@ -33,7 +33,7 @@ public abstract class BasePage {
         driver.findElement(elementBy).click();
     }
 
-    public void writeText(By elementBy, String text) {
+    public void inputText(By elementBy, String text) {
         waitForElementVisibility(elementBy);
         clearField(elementBy);
         driver.findElement(elementBy).sendKeys(text);
@@ -41,5 +41,18 @@ public abstract class BasePage {
 
     public void clearField(By elementBy) {
         driver.findElement(elementBy).clear();
+    }
+
+    public void assertEquals(By elementBy, String expectedText) {
+        waitForElementVisibility(elementBy);
+        Assert.assertEquals(driver.findElement(elementBy).getAttribute("value"), expectedText);
+    }
+
+    public void assertEquals(int firstValue, int secondValue) {
+        Assert.assertEquals(firstValue, secondValue, "Values are not equals");
+    }
+
+    public void assertEquals(String firstValue, String secondValue) {
+        Assert.assertEquals(firstValue, secondValue, "Values are not equals");
     }
 }

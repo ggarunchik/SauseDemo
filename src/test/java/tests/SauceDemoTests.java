@@ -7,8 +7,9 @@ public class SauceDemoTests extends BaseTest {
 
     @Test
     public void demoTestsFromLecture() {
+        User user = new User("standard_user", "secret_sauce");
         loginPage.openPage();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.tryToLogin(user);
         productsPage.addToCart("Sauce Labs Fleece Jacket");
         cartPage.openPage();
         cartPage.validateProductsAmount(1);
