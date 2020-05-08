@@ -1,5 +1,6 @@
 package pages;
 
+import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -28,14 +29,21 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public void login(String userName, String userPassword) {
-        driver.findElement(USERNAME_INPUT).sendKeys(userName);
-        driver.findElement(PASSWORD_INPUT).sendKeys(userPassword);
-        driver.findElement(LOGIN_BUTTON).click();
+    public LoginPage tryToLogin(User user) {
+        inputText(USERNAME_INPUT, user.getUserName());
+        inputText(PASSWORD_INPUT, user.getUserPassword());
+        click(LOGIN_BUTTON);
+        return this;
     }
 
-    public void verifyLongErrorPopUp() {
+    public ProductsPage loginAndContinue(User user) {
+        tryToLogin(user);
+        return new ProductsPage(driver);
+    }
+
+    public LoginPage verifyErrorPopUp() {
         waitForElementVisibility(ERROR_LOCATOR);
+        return this;
     }
 
 }

@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
 public class CheckoutPage extends BasePage {
 
@@ -16,6 +15,7 @@ public class CheckoutPage extends BasePage {
     private static final By TOTAL_LOCATOR = By.xpath("//*/div[@class='summary_total_label']");
     private static final By FINISH_BUTTON = By.xpath("//a[text()='FINISH']");
     private static final By COMPLETE_ORDER_STRING = By.className("complete-header");
+    private static String CHECKOUT_URL = "https://www.saucedemo.com/checkout-step-one.html";
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -23,21 +23,25 @@ public class CheckoutPage extends BasePage {
 
     @Override
     protected CheckoutPage openPage() {
+        driver.get(CHECKOUT_URL);
+        isPageOpen();
         return this;
     }
 
     @Override
     protected CheckoutPage isPageOpen() {
+        waitForElementVisibility(CONTINUE_BUTTON);
         return this;
     }
 
-    public void verifyContinueToCheckout(String userName, String userSurname, int userZipCode) {
-        writeText(FIRST_NAME_INPUT, userName);
-        writeText(LAST_NAME_INPUT, userSurname);
-        writeText(ZIP_CODE_INPUT, String.valueOf(userZipCode));
+    public CheckoutPage verifyContinueToCheckout(String userName, String userSurname, int userZipCode) {
+        inputText(FIRST_NAME_INPUT, userName);
+        inputText(LAST_NAME_INPUT, userSurname);
+        inputText(ZIP_CODE_INPUT, String.valueOf(userZipCode));
         click(CONTINUE_BUTTON);
         click(FINISH_BUTTON);
         waitForElementVisibility(COMPLETE_ORDER_STRING);
+        return this;
     }
 
     //TODO find a way to trim OR locate only value of price without text

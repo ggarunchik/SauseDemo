@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
@@ -16,6 +17,7 @@ public class BaseTest {
     CartPage cartPage;
     CheckoutPage checkoutPage;
     LoginPageFactory loginPageFactory;
+    SideMenuPage sideMenuPage;
 
     @BeforeMethod
     public void setUp() {
@@ -26,6 +28,7 @@ public class BaseTest {
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
         loginPageFactory = new LoginPageFactory(driver);
+        sideMenuPage = new SideMenuPage(driver);
     }
 
     @AfterMethod(alwaysRun = true)
