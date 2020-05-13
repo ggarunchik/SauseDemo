@@ -41,6 +41,13 @@ public class LoginPage extends BasePage {
         return new ProductsPage(driver);
     }
 
+    public ProductsPage loginWithProp(String userN, String userP) {
+        inputText(USERNAME_INPUT,userN);
+        inputText(PASSWORD_INPUT, userP);
+        click(LOGIN_BUTTON);
+        return new ProductsPage(driver);
+    }
+
     public LoginPage verifyErrorPopUp() {
         waitForElementVisibility(ERROR_LOCATOR);
         return this;

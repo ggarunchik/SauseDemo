@@ -11,7 +11,8 @@ public class LoginTests extends BaseTest {
     public void loginWithRegularUser() {
         loginPage
                 .openPage()
-                .loginAndContinue(userRegular);
+                //.loginAndContinue(userRegular);
+                .loginWithProp(System.getProperty("user"), System.getProperty("password"));
         productsPage
                 .verifyInventoryVisibility();
     }
