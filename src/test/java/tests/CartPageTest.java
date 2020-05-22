@@ -33,7 +33,7 @@ public class CartPageTest extends BaseTest {
     public void verifyUserCanContinueShopping() {
         verifyCartItems();
         cartPage.clickContinueShopping();
-        cartPage.verifyItemAmountBadge(3);
+        cartPage.verifyItemAmountBadge(2);
     }
 
     @Test
