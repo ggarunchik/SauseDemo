@@ -36,6 +36,7 @@ public class SideMenuPage extends BasePage {
 
     @Step("Clicking on All Items button")
     public ProductsPage clickAllItemsButton() {
+        AllureUtils.takeScreenshot(driver);
         click(ALL_ITEMS_BUTTON);
         AllureUtils.takeScreenshot(driver);
         return new ProductsPage(driver);
