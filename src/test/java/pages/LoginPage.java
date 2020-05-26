@@ -35,7 +35,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Trying to login with data: '{user.getUserName()}', '{user.getUserPassword()}'")
+    @Step("Trying to login with data: '{user}'")
     public LoginPage tryToLogin(User user) {
         inputText(USERNAME_INPUT, user.getUserName());
         inputText(PASSWORD_INPUT, user.getUserPassword());
@@ -50,6 +50,7 @@ public class LoginPage extends BasePage {
         return new ProductsPage(driver);
     }
 
+    @Step("Trying to logging with passed values user name: '{userN}' user password '{userP}' ")
     public ProductsPage loginWithProp(String userN, String userP) {
         inputText(USERNAME_INPUT,userN);
         inputText(PASSWORD_INPUT, userP);

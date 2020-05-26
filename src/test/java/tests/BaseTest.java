@@ -10,7 +10,7 @@ import steps.LoginPageSteps;
 import utils.CapabilitiesGenerator;
 import utils.TestListener;
 
-@Listeners(TestListener.class)
+//@Listeners(TestListener.class)
 public class BaseTest {
 
     private WebDriver driver;
