@@ -46,6 +46,9 @@ workflows:
   commit:
     jobs:
       - ui-tests
+      filters:
+        branches:
+          only: master
 #  periodical:
 #    triggers:
 #      - schedule:
