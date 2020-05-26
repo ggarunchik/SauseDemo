@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import models.User;
 import org.testng.annotations.Test;
 
@@ -15,6 +16,12 @@ public class LoginTests extends BaseTest {
                 //.loginWithProp(System.getProperty("user"), System.getProperty("password"));
         productsPage
                 .verifyInventoryVisibility();
+    }
+
+    @Test(description = "Login with regular user")
+    @Description("Demonstration of the steps description")
+    public void loginWithRegularUserTest() {
+        loginPageSteps.loginWithRegularUser(userRegular);
     }
 
     @Test

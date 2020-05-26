@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
+import steps.LoginPageSteps;
 import utils.CapabilitiesGenerator;
 import utils.TestListener;
 
@@ -19,6 +20,7 @@ public class BaseTest {
     CheckoutPage checkoutPage;
     LoginPageFactory loginPageFactory;
     SideMenuPage sideMenuPage;
+    LoginPageSteps loginPageSteps;
 
     @BeforeMethod(description = "Creating webdriver with capabilities. Creating page objects")
     public void setUp() {
@@ -29,6 +31,7 @@ public class BaseTest {
         checkoutPage = new CheckoutPage(driver);
         loginPageFactory = new LoginPageFactory(driver);
         sideMenuPage = new SideMenuPage(driver);
+        loginPageSteps = new LoginPageSteps(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Closing browser")
