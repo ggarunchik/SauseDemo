@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -21,6 +22,7 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
 
+    @Step("Opening Checkout Page")
     @Override
     protected CheckoutPage openPage() {
         driver.get(CHECKOUT_URL);
@@ -28,12 +30,14 @@ public class CheckoutPage extends BasePage {
         return this;
     }
 
+    @Step("Verify Checkout Page is opened")
     @Override
     protected CheckoutPage isPageOpen() {
         waitForElementVisibility(CONTINUE_BUTTON);
         return this;
     }
 
+    @Step("Proceeding to checkout")
     public CheckoutPage verifyContinueToCheckout(String userName, String userSurname, int userZipCode) {
         inputText(FIRST_NAME_INPUT, userName);
         inputText(LAST_NAME_INPUT, userSurname);

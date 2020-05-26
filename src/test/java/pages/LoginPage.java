@@ -61,6 +61,7 @@ public class LoginPage extends BasePage {
     @Step("Verifying Error Pop Up")
     public LoginPage verifyErrorPopUp() {
         waitForElementVisibility(ERROR_LOCATOR);
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 

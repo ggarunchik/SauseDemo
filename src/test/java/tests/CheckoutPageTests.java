@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class CheckoutPageTests extends BaseTest {
     private static final User userRegular = new User("standard_user", "secret_sauce");
 
-    @Test
+    @Test(description = "Verify checkout process")
     public void verifyCheckoutProcess() {
         loginPage
                 .openPage()

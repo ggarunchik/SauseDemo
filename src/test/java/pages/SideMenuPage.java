@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -17,6 +18,7 @@ public class SideMenuPage extends BasePage {
         super(driver);
     }
 
+    @Step("Opening Side Menu")
     @Override
     public SideMenuPage openPage() {
         click(SIDE_MENU_BUTTON);
@@ -24,12 +26,14 @@ public class SideMenuPage extends BasePage {
         return this;
     }
 
+    @Step("Verifying Side Menu is opened")
     @Override
     protected SideMenuPage isPageOpen() {
         waitForElementVisibility(CLOSE_SIDE_MENU_BUTTON);
         return this;
     }
 
+    @Step("Clicking on All Items button")
     public ProductsPage clickAllItemsButton() {
         click(ALL_ITEMS_BUTTON);
         return new ProductsPage(driver);
