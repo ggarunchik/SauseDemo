@@ -20,7 +20,7 @@ public class BaseTest {
     LoginPageFactory loginPageFactory;
     SideMenuPage sideMenuPage;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Creating webdriver with capabilities. Creating page objects")
     public void setUp() {
         driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         loginPage = new LoginPage(driver);
@@ -31,7 +31,7 @@ public class BaseTest {
         sideMenuPage = new SideMenuPage(driver);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Closing browser")
     public void closeBrowser() {
         driver.quit();
     }
