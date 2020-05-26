@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import utils.AllureUtils;
 
 public class CartPage extends BasePage {
 
@@ -33,12 +34,14 @@ public class CartPage extends BasePage {
     @Override
     protected CartPage isPageOpen() {
         waitForElementVisibility(CHECKOUT_BTN);
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
     @Step("Checking that amount of products equals to: '{number}'")
     public CartPage validateProductsAmount(int number) {
         Assert.assertEquals(driver.findElements(CART_ITEM).size(), number, "Quantity is invalid");
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
@@ -48,11 +51,13 @@ public class CartPage extends BasePage {
         Assert.assertEquals(actualQuantity, String.valueOf(quantity), "Quantity is invalid");
         String actualPrice = driver.findElement(By.xpath(String.format(productPriceLocator, productName))).getText();
         Assert.assertEquals(actualPrice, String.valueOf(price), "Price is invalid");
+        AllureUtils.takeScreenshot(driver);
     }
 
     @Step("Proceeding to checkout")
     public CheckoutPage continueCheckout() {
         click(CHECKOUT_BTN);
+        AllureUtils.takeScreenshot(driver);
         return new CheckoutPage(driver);
     }
 
@@ -60,12 +65,14 @@ public class CartPage extends BasePage {
     public CartPage removeItemFromCart(String productName) {
         By removeFromCart = By.xpath(String.format(REMOVE_FROM_CART_LOCATOR, productName));
         driver.findElement(removeFromCart).click();
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
     @Step("Clicking on continue shopping button")
     public ProductsPage clickContinueShopping() {
         click(CONTINUE_SHOPPING_BUTTON);
+        AllureUtils.takeScreenshot(driver);
         return new ProductsPage(driver);
     }
 
@@ -73,6 +80,7 @@ public class CartPage extends BasePage {
     public CartPage verifyItemAmountBadge(int expectedItemAmount) {
         int badgeValue = Integer.parseInt(driver.findElement(ITEM_AMOUNT_BADGE).getText());
         assertEquals(badgeValue, expectedItemAmount);
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 }
