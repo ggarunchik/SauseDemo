@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import utils.AllureUtils;
 
 public class SideMenuPage extends BasePage {
 
@@ -36,6 +37,7 @@ public class SideMenuPage extends BasePage {
     @Step("Clicking on All Items button")
     public ProductsPage clickAllItemsButton() {
         click(ALL_ITEMS_BUTTON);
+        AllureUtils.takeScreenshot(driver);
         return new ProductsPage(driver);
     }
 
