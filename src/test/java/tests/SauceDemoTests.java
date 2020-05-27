@@ -17,7 +17,7 @@ public class SauceDemoTests extends BaseTest {
         cartPage.validateProductDetails("Sauce Labs Fleece Jacket", 1, 49.99);
     }
 
-    @Ignore("Why not??")
+    @Ignore("Just dont know")
     @Test
     public void loginWithPageFactoryPattern() {
         User user = new User("standard_user", "secret_sauce");

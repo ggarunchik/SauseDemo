@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class CartPageTest extends BaseTest {
     private static final User userRegular = new User("standard_user", "secret_sauce");
 
-    @Test
+    @Test(description = "Verify user can add products to the cart" )
     public void verifyCartItems() {
         loginPage
                 .openPage()
@@ -20,7 +20,7 @@ public class CartPageTest extends BaseTest {
                 .verifyItemAmountBadge(3);
     }
 
-    @Test
+    @Test(description = "Verify user can remove products to the cart" )
     public void verifyUserCanRemoveItem() {
         verifyCartItems();
         cartPage
@@ -29,14 +29,14 @@ public class CartPageTest extends BaseTest {
                 .verifyItemAmountBadge(2);
     }
 
-    @Test
+    @Test(description = "Verify user can continue shopping")
     public void verifyUserCanContinueShopping() {
         verifyCartItems();
         cartPage.clickContinueShopping();
         cartPage.verifyItemAmountBadge(2);
     }
 
-    @Test
+    @Test(description = "Verify user can continue shopping from side menu")
     public void continueShoppingSideMenu() {
         verifyCartItems();
         sideMenuPage

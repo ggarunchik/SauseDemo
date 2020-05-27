@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,6 +18,7 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
+    @Step("Opening Products Page")
     @Override
     public ProductsPage openPage() {
         driver.get(PRODUCTS_URL);
@@ -24,22 +26,26 @@ public class ProductsPage extends BasePage {
         return this;
     }
 
+    @Step("Verifying Products Page is opened")
     @Override
     protected ProductsPage isPageOpen() {
         waitForElementVisibility(INVENTORY_VISIBILITY_LOCATOR);
         return this;
     }
 
+    @Step("Adding to cart item: '{productName}'")
     public ProductsPage addToCart(String productName) {
         By addToCartXpath = By.xpath(String.format(ADD_TO_CART_LOCATOR, productName));
         driver.findElement(addToCartXpath).click();
         return this;
     }
 
+    @Step("Verifying inventory is visible")
     public void verifyInventoryVisibility() {
         waitForElementVisibility(INVENTORY_VISIBILITY_LOCATOR);
     }
 
+    @Step("Clicking on cart")
     public CartPage clickCart() {
         driver.findElement(By.cssSelector(CART_CSS)).click();
         return new CartPage(driver);

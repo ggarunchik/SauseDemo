@@ -46,16 +46,13 @@ workflows:
   commit:
     jobs:
       - ui-tests
-      filters:
-        branches:
-          only: master
-#  periodical:
-#    triggers:
-#      - schedule:
-#          cron: "1 4,8,12 * * *"
-#          filters:
-#            branches:
-#              only:
-#                - master
-#    jobs:
-#      - ui-tests
+  periodical:
+    triggers:
+      - schedule:
+          cron: "1 4,8,12 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - ui-tests

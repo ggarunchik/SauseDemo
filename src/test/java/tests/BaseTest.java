@@ -2,14 +2,15 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import pages.*;
+import steps.LoginPageSteps;
 import utils.CapabilitiesGenerator;
+import utils.TestListener;
 
-import java.util.concurrent.TimeUnit;
-
+//@Listeners(TestListener.class)
 public class BaseTest {
 
     private WebDriver driver;
@@ -19,8 +20,9 @@ public class BaseTest {
     CheckoutPage checkoutPage;
     LoginPageFactory loginPageFactory;
     SideMenuPage sideMenuPage;
+    LoginPageSteps loginPageSteps;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Creating webdriver with capabilities. Creating page objects")
     public void setUp() {
         driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         loginPage = new LoginPage(driver);
@@ -29,9 +31,10 @@ public class BaseTest {
         checkoutPage = new CheckoutPage(driver);
         loginPageFactory = new LoginPageFactory(driver);
         sideMenuPage = new SideMenuPage(driver);
+        loginPageSteps = new LoginPageSteps(driver);
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Closing browser")
     public void closeBrowser() {
         driver.quit();
     }

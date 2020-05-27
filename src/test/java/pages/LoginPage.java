@@ -1,8 +1,11 @@
 package pages;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.AllureUtils;
 
 public class LoginPage extends BasePage {
     private static final By USERNAME_INPUT = By.id("user-name");
@@ -16,19 +19,23 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    @Step("Opening Login Page")
     @Override
     public LoginPage openPage() {
         driver.get(LOGIN_URL);
         isPageOpen();
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
+    @Step("Verifying is Login Page open")
     @Override
     protected LoginPage isPageOpen() {
         waitForElementVisibility(LOGIN_BUTTON);
         return this;
     }
 
+    @Step("Trying to login with data: '{user}'")
     public LoginPage tryToLogin(User user) {
         inputText(USERNAME_INPUT, user.getUserName());
         inputText(PASSWORD_INPUT, user.getUserPassword());
@@ -36,11 +43,14 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Trying to login and check Product Page is visible")
     public ProductsPage loginAndContinue(User user) {
         tryToLogin(user);
+        AllureUtils.takeScreenshot(driver);
         return new ProductsPage(driver);
     }
 
+    @Step("Trying to logging with passed values user name: '{userN}' user password '{userP}' ")
     public ProductsPage loginWithProp(String userN, String userP) {
         inputText(USERNAME_INPUT,userN);
         inputText(PASSWORD_INPUT, userP);
@@ -48,8 +58,10 @@ public class LoginPage extends BasePage {
         return new ProductsPage(driver);
     }
 
+    @Step("Verifying Error Pop Up")
     public LoginPage verifyErrorPopUp() {
         waitForElementVisibility(ERROR_LOCATOR);
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
